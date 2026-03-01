@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 10</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f4f7fa;
+    }
+    .card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d5dfe7;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px;
+      margin-top: 8px;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      background: #eef5ff;
+      border-radius: 6px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 10</h1>
+    <p>Работа с датой.</p>
+
+    <label for="dateInput">Выберите дату:</label>
+    <input type="date" id="dateInput">
+    <br>
+    <button type="button" onclick="analyzeDate()">Определить</button>
+
+    <div class="result" id="result">Выберите дату и нажмите кнопку.</div>
+  </div>
+
+  <script>
+    function getWeekNumber(date) {
+      const start = new Date(date.getFullYear(), 0, 1);
+      const dayDiff = Math.floor((date - start) / 86400000);
+      return Math.floor((dayDiff + start.getDay()) / 7) + 1;
+    }
+
+    function getZodiac(day, month) {
+      const signs = [
+        ['Козерог', 20],
+        ['Водолей', 19],
+        ['Рыбы', 20],
+        ['Овен', 20],
+        ['Телец', 21],
+        ['Близнецы', 21],
+        ['Рак', 22],
+        ['Лев', 23],
+        ['Дева', 23],
+        ['Весы', 23],
+        ['Скорпион', 22],
+        ['Стрелец', 22],
+        ['Козерог', 31]
+      ];
+
+      return day <= signs[month][1] ? signs[month][0] : signs[month + 1][0];
+    }
+
+    function getJapaneseYearName(year) {
+      const animals = ['крысы', 'коровы', 'тигра', 'зайца', 'дракона', 'змеи', 'лошади', 'овцы', 'обезьяны', 'курицы', 'собаки', 'свиньи'];
+      const colors = ['зеленый', 'красный', 'желтый', 'белый', 'черный'];
+      const offset = ((year - 1984) % 60 + 60) % 60;
+      const color = colors[Math.floor(offset / 12)];
+      const animal = animals[offset % 12];
+      return color + ' год ' + animal;
+    }
+
+    function analyzeDate() {
+      const rawDate = document.getElementById('dateInput').value;
+
+      if (!rawDate) {
+        alert('Сначала выберите дату.');
+        return;
+      }
+
+      const date = new Date(rawDate + 'T00:00:00');
+      const day = date.getDate();
+      const month = date.getMonth();
+      const year = date.getFullYear();
+
+      const weekNumber = getWeekNumber(date);
+      const zodiac = getZodiac(day, month);
+      const japaneseYear = getJapaneseYearName(year);
+
+      document.getElementById('result').textContent =
+        'Номер недели: ' + weekNumber + '\n' +
+        'Знак зодиака: ' + zodiac + '\n' +
+        'Старояпонское название года: ' + japaneseYear;
+    }
+  </script>
+</body>
+</html>

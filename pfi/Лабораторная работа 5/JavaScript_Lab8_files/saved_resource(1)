@@ -1,0 +1,7 @@
+var u_data="RU|aR9_Dil||s200".split('|',4);document.write('<scr'+'ipt type="text/javascript" src="http://s212.ucoz.net/ads_w2h.js"></scr'+'ipt>');
+document.write('<input type="hidden" id="bannerXaR9_Dil" value="240"><input type="hidden" id="bannerYaR9_Dil" value="400">');
+document.write('<div id="SC_TBlock_60043" class="SC_TBlock"></div>');
+var SC_CId = "60043";
+var SC_add_params='eyJuYXJvZCI6MSwicGFyYW0iOiJwaWQ9MTgmbG5nPSZyZWY9aHR0cCUzQSUyRiUyRmxvcy1zZXJlZ2EubmFyb2QucnUlMkZKYXZhU2NyaXB0JTJGc3RhcnQuaHRtbCZ1MD1SVSU3Q2FSOV9EaWwlN0MlN0NzMjAwIn0=';
+document.write('<scr'+'ipt type="text/javascript" src="http://st.ad.smaclick.com/js/adv_out.js"></scr'+'ipt>');
+document.write('<scr'+'ipt type="text/javascript" src="http://s212.ucoz.net/ads_w2f.js"></scr'+'ipt>');

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 9</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f7f7fb;
+    }
+    .card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d9d9e6;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e5ef;
+    }
+    input, button {
+      padding: 7px;
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 9</h1>
+
+    <section>
+      <h2>Переворот числа</h2>
+      <input type="number" id="numberToReverse" placeholder="Введите число">
+      <button type="button" onclick="reverseNumber()">Перевернуть</button>
+      <p id="reverseResult">Результат появится здесь.</p>
+    </section>
+
+    <section>
+      <h2>Количество счастливых билетов</h2>
+      <button type="button" onclick="countLuckyTickets()">Посчитать</button>
+      <p id="luckyResult">Нажмите кнопку для вычисления.</p>
+    </section>
+
+    <section>
+      <h2>Делители числа</h2>
+      <input type="number" id="divisorNumber" placeholder="Введите натуральное число">
+      <button type="button" onclick="findDivisors()">Найти делители</button>
+      <p id="divisorResult">Результат появится здесь.</p>
+    </section>
+  </div>
+
+  <script>
+    function reverseNumber() {
+      const value = document.getElementById('numberToReverse').value;
+
+      if (value === '') {
+        alert('Введите число.');
+        return;
+      }
+
+      const reversed = String(value).split('').reverse().join('');
+      document.getElementById('reverseResult').textContent = 'Перевёрнутое число: ' + reversed;
+    }
+
+    function countLuckyTickets() {
+      let count = 0;
+
+      for (let i = 0; i <= 999999; i += 1) {
+        const ticket = String(i).padStart(6, '0');
+        const first = Number(ticket[0]) + Number(ticket[1]) + Number(ticket[2]);
+        const second = Number(ticket[3]) + Number(ticket[4]) + Number(ticket[5]);
+
+        if (first === second) {
+          count += 1;
+        }
+      }
+
+      document.getElementById('luckyResult').textContent = 'Количество счастливых билетов: ' + count;
+    }
+
+    function findDivisors() {
+      const value = Number(document.getElementById('divisorNumber').value);
+
+      if (!value || value < 1) {
+        alert('Введите натуральное число больше нуля.');
+        return;
+      }
+
+      const divisors = [];
+
+      for (let i = 1; i <= value; i += 1) {
+        if (value % i === 0) {
+          divisors.push(i);
+        }
+      }
+
+      document.getElementById('divisorResult').textContent = 'Делители: ' + divisors.join(', ');
+    }
+  </script>
+</body>
+</html>

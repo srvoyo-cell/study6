@@ -1,0 +1,140 @@
+﻿<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./JavaScript_Lab6_files/saved_resource"></script></head><body background="./JavaScript_Lab6_files/fon.jpg">
+
+ <title>Лабораторная работа №6</title>
+
+
+<p align="Center">
+ <b>Лабораторная работа №6</b>
+ <br>
+ <b>Флажки</b>
+</p>
+
+<p align="Justify">
+ <br>Элемент управления "флажок" используется в случае, когда из предложенных вариантов можно выбрать как один, так и несколько. Каждый вариант выбора задается флажком, который можно либо установить, либо сбросить. Флажок определяется в теге &lt;input&gt; значением <i>checkbox</i> параметра <i>type</i>. Обязательным параметром является параметр <i>value</i>, значение которого будет передано на обработку в случае выбора нажатием кнопки.
+</p>
+<br>
+<p align="Center">
+ <b>Пример 1. Выбор характеристик издания</b>
+</p>
+
+<p align="Justify">
+ <br>Предположим, читателю предлагается заполнить анкету, в которой требуется указать название любимого издания и выбрать из предложенного списка характеристики, которые присущи рассматриваемому изданию.
+ <br>Для задания характеристик издания можно воспользоваться флажком. Пользователь устанавливает флажки для тех свойств, которыми, по его мнению, обладает издание. Обработка анкеты будет состоять в том, что выбранные свойства будут отражены в поле ввода многострочного текста.
+ <br>При щелчке мышью по флажку возникает событие <i>click</i>, обработка которого состоит в вызове функции <i>set</i> с одним параметром, принимающим значение параметра <i>value</i> флажка. Для формирования строки результата служит глобальная переменная <i>s</i>; к имеющемуся значению добавляется значение параметра функции и помещается в текстовое поле. Если нажать ни кнопку <b>Отмена</b>, то очистятся все поля формы. Однако следует позаботиться о том, чтобы значение переменной <i>s</i> изменилось на начальное. Значение параметра реакции на событие <i>click</i> при щелчке по кнопке <b>Отмена</b> задается оператором присваивания, обеспечивающим начальные условия.
+ <br>HTML-код представлен в листинге 1.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 1.</b> Анкета читателя
+ <br>
+ <textarea rows="10" cols="70" onfocus="this.select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Анкета читателя&lt;/TITLE&gt;
+  &lt;script&gt;
+  &lt;!--
+  var s="Bac привлекает: \r\n"
+  function set(vch)
+  { s=s+vch + "\r\n"; document.form1.area.value=s }
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY bgcolor="F8F8FF"&gt;
+  &lt;CENTER&gt;
+  &lt;H3 align="center"&gt;Анкета читателя&lt;/НЗ&gt;
+  &lt;FORM name="form0"&gt;
+  &lt;H4&gt;Введите название любимого журнала или газеты&lt;/H4&gt;
+  &lt;input type="text" name="n1" size=45&gt;&lt;br&gt;
+  &lt;/FORM&gt;
+  &lt;FORM name="form1"&gt;
+  &lt;H4&gt;Что Вас привлекает в издании?&lt;/H4&gt;
+  &lt;TABLE border=3 align=center&gt; &lt;TR&gt;
+  &lt;TD&gt;&lt;img src="purpsm.gif" align="center"&gt;&lt;/TD&gt;
+  &lt;TD&gt;&lt;input type="checkbox" name="m1" value="Стиль подачи материала" onClick="set(form1.elements[0].value)"&gt;
+  Стиль подачи материала&lt;br&gt;
+  &lt;input type="checkbox" name="m2" value="Достоверность информации" onClick="set(form1.elements[1].value)"&gt;
+  Достоверность информации&lt;br&gt;
+  &lt;input type="checkbox" name="m3" value="Дизайн и оформление" onClick="set(form1.elements[2].value)"&gt;
+  Дизайн и оформление&lt;br&gt;
+  &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+  &lt;textarea name="area" cols=35 rows=7&gt; &lt;/textarea&gt;&lt;br&gt;
+  &lt;input type="reset" value="Отмена"
+  onclick= "s='Bac привлекает: \r\n'"&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/html&gt;
+ </textarea>
+</p>
+
+<p align="Justify">
+ <br>В рассмотренных примерах значения параметра name флажков были различны, поскольку каждый флажок существовал независимо от других. Флажки можно объединить в группу. Для этого следует всем флажкам присвоить одно и то же значение параметра <i>name</i>.
+</p>
+
+<p align="Center">
+ <br><br>
+ <b>Пример 2. Использование флажков в анкете переводчика</b>
+</p>
+
+<p align="Justify">
+ <br>В анкете требуется указать те языки, которыми владеет переводчик. Предположим, что за знание каждого языка назначается определенная сумма. Размер вознаграждения определяется после заполнения анкеты в зависимости от тех языков, которыми пользователь владеет. По результатам заполненной переводчиком анкеты напишите сценарий определения размера вознаграждения.
+ <br>Для задания сведений о том, владеет ли пользователь определенным языком, удобно применять флажок. При щелчке мышью по кнопке <b>Вознаграждение</b> выполняется функция <i>grant()</i>. Требуется проанализировать состояние флажков. Свойство <i>checked</i> возвращает логическое значение, представляющее текущее значение отдельного флажка (<i>true</i> или <i>false</i>). Воспользуемся тем, что каждый объект <i>form</i> имеет свойство-массив <i>elements</i>, получим доступ к каждому флажку формы. Состояние первого флажка можно определить с помощью следующей конструкции:
+ </p><pre>(document.forml.elements[0]).checked</pre>
+ второго -
+ <pre>(document. form1.elements[1]).checked</pre>
+<p align="Justify">
+ и т. д. В переменной <i>к</i> накапливается сумма. Шаг увеличения этой переменной задается в качестве значения параметра <i>value</i>. После анализа всех флажков полученная сумма выводится в документ.
+ <br>HTML-код представлен в листинге 2.
+</p>
+
+<p align="Center">
+ <br><b>Листинг 2. Данные, представленные флажком. Анкета переводчика</b>
+ <textarea rows="10" cols="70" onfocus="this.select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Данные, представленные флажком. Анкета переводчика&lt;/TITLE&gt;
+  &lt;script language="JavaScript"&gt;
+  &lt;!-- //
+  function grant()
+  { var d= document
+  var k=0;
+  if ((d.form1.elements[0]).checked)
+  k=k+Number(d.form1.elements[0].value)
+  if ((d.form1.elements[1]).checked)
+  k=k+Number(d.form1.elements[1].value)
+  if ((d.form1.elements[2]).checked)
+  k=k+Number(d.form1.elements[2].value)
+  form1.ww.value="Вам полагается вознаграждение "+k+" y.e."
+  }
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+  &lt;H3&gt;Анкета для переводчиков&lt;/H3&gt;
+  Укажите те языки, которыми Вы владеете в совершенстве: &lt;br&gt;
+  &lt;FORM name="form1"&gt;
+  &lt;input type="checkbox" name="lan" value=100&gt;pyccкий&lt;br&gt;
+  &lt;input type="checkbox" name="lan" value=200&gt;английский&lt;br&gt;
+  &lt;input type="checkbox" name="lan" value=300&gt;французский&lt;br&gt;
+  &lt;input type="button" value=Вознаграждениие onClick="grant()"&gt; &lt;hr&gt;
+  &lt;input type="Text" size=50 name="ww" value=""&gt;&lt;br&gt;
+  &lt;input type="reset" value="Отменить"&gt;
+  &lt;/FORM&gt;&lt;hr&gt;
+ &lt;/body&gt;
+  &lt;/HTML&gt;
+ </textarea>
+</p>
+
+<p align="Center">
+ <br><b>Упражнение</b>
+</p>
+<p align="Justify">
+ <br>Напишите сценарий обработки анкеты слушателя курсов. Пользователь может выбрать курс, его продолжительность, язык, на котором он готов работать с преподавателем, и форму отчетности. В зависимости от этих параметров определяется стоимость отдельного курса и стоимость всего обучения. Анкета приведена на <a href="http://los-serega.narod.ru/JavaScript/data/6.html">рис. 2</a>.
+
+  <br><br>
+</p>
+
+
+<!-- copyright (t3) --><div align="center">Хостинг от <a href="http://www.ucoz.ru/" title="Создать сайт бесплатно">uCoz</a><br></div><!-- /copyright -->
+
+
+<script type="text/javascript" src="./JavaScript_Lab6_files/989615.js"></script></body></html>

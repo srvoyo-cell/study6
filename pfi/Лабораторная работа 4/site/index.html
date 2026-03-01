@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа №4</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="page-banner">
+      <img src="assets/banner.svg" alt="Баннер сайта">
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="nav-title">Меню сайта</p>
+        <nav aria-label="Меню">
+          <ul class="nav-tree">
+            <li class="menu-level-1">
+              <a href="index.html"><img class="nav-icon" src="assets/icon-home.svg" alt="">Главная</a>
+            </li>
+            <li class="menu-level-1">
+              <a href="articles.html">Теория</a>
+              <ul>
+                <li class="menu-level-2">
+                  <a href="articles.html#css-basics">Основы CSS</a>
+                  <ul>
+                    <li class="menu-level-3">
+                      <a href="articles.html#selectors">Селекторы</a>
+                      <ul>
+                        <li class="menu-level-4"><a href="articles.html#pseudo">Псевдоклассы</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-level-2"><a href="articles.html#layout">Оформление страницы</a></li>
+              </ul>
+            </li>
+            <li class="menu-level-1">
+              <a href="gallery.html">Графика</a>
+              <ul>
+                <li class="menu-level-2"><a href="gallery.html#banner">Баннер</a></li>
+                <li class="menu-level-2"><a href="gallery.html#icons">Иконки</a></li>
+              </ul>
+            </li>
+            <li class="menu-level-1"><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <ul class="meta-list">
+          <li>Стили вынесены в отдельный файл.</li>
+          <li>Есть меню 1-4 уровней.</li>
+          <li>Есть ссылки, таблица и картинки.</li>
+        </ul>
+      </aside>
+
+      <main class="content-card">
+        <p class="eyebrow">Учебный пример</p>
+        <h1>Простой сайт для лабораторной работы</h1>
+        <p class="lead">Этот сайт сделан как пример лабораторной работы по CSS. Здесь есть несколько страниц и общий файл стилей.</p>
+
+        <div class="button-row">
+          <a class="icon-link" href="articles.html"><img src="assets/icon-back.svg" alt="">Открыть теорию</a>
+          <a class="icon-link" href="contacts.html"><img src="assets/icon-mail.svg" alt="">Открыть контакты</a>
+        </div>
+
+        <img class="divider" src="assets/divider.svg" alt="Разделитель">
+
+        <h2>Что есть на сайте</h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Заголовки</h3>
+            <p>На страницах используются заголовки от h1 до h4.</p>
+          </div>
+          <div class="feature">
+            <h3>Меню</h3>
+            <p>В меню сделаны 4 уровня вложенности.</p>
+          </div>
+          <div class="feature">
+            <h3>Графика</h3>
+            <p>Добавлены баннер, разделитель, буллет и простые иконки.</p>
+          </div>
+        </div>
+
+        <h2>Небольшая таблица</h2>
+        <p>Таблица нужна для того, чтобы показать оформление таблиц и ячеек.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Элемент</th>
+              <th>Где используется</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Заголовки</td>
+              <td>На всех страницах сайта</td>
+            </tr>
+            <tr>
+              <td>Ссылки</td>
+              <td>В меню и внутри текста</td>
+            </tr>
+            <tr>
+              <td>Таблица</td>
+              <td>На этой странице и в разделе контактов</td>
+            </tr>
+            <tr>
+              <td>Графика</td>
+              <td>В шапке и в списках</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Для чего сделан этот сайт</h3>
+        <p>Сайт нужен для демонстрации того, что я умею подключать внешний CSS и оформлять основные элементы страницы.</p>
+
+        <h4>Что можно показать преподавателю</h4>
+        <ul class="resources">
+          <li>Файл <a href="css/styles.css">styles.css</a> с общими стилями.</li>
+          <li>Многоуровневое меню слева.</li>
+          <li>Отдельные файлы графики в папке <a href="assets/banner.svg">assets</a>.</li>
+        </ul>
+
+        <div class="card-note">
+          <p>Сайт сделан специально простым, без сложного дизайна, чтобы он выглядел как обычная студенческая работа.</p>
+        </div>
+
+        <footer>
+          Главная страница лабораторной работы.
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

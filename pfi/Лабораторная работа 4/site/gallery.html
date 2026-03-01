@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Графика</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="page-banner">
+      <img src="assets/banner.svg" alt="Баннер сайта">
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="nav-title">Меню сайта</p>
+        <nav aria-label="Меню">
+          <ul class="nav-tree">
+            <li class="menu-level-1">
+              <a href="index.html"><img class="nav-icon" src="assets/icon-home.svg" alt="">Главная</a>
+            </li>
+            <li class="menu-level-1"><a href="articles.html">Теория</a></li>
+            <li class="menu-level-1">
+              <a href="gallery.html">Графика</a>
+              <ul>
+                <li class="menu-level-2"><a href="#banner">Баннер</a></li>
+                <li class="menu-level-2"><a href="#divider">Разделитель</a></li>
+                <li class="menu-level-2"><a href="#icons">Иконки</a></li>
+              </ul>
+            </li>
+            <li class="menu-level-1"><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <ul class="meta-list">
+          <li>Графика сделана в формате SVG.</li>
+          <li>Файлы лежат в папке assets.</li>
+        </ul>
+      </aside>
+
+      <main class="content-card">
+        <p class="eyebrow">Графические элементы</p>
+        <h1>Картинки для сайта</h1>
+        <p class="lead">По заданию нужно было добавить баннер, разделитель, буллеты и пиктограммы. Все это сделано в простом виде.</p>
+
+        <div class="button-row">
+          <a class="icon-link" href="index.html"><img src="assets/icon-back.svg" alt="">На главную</a>
+          <a class="icon-link" href="contacts.html"><img src="assets/icon-mail.svg" alt="">К контактам</a>
+        </div>
+
+        <h2 id="banner">Баннер</h2>
+        <p>Баннер находится сверху на всех страницах. Он сделан специально без сложного дизайна.</p>
+        <div class="mini-gallery">
+          <figure>
+            <img src="assets/banner.svg" alt="Баннер">
+            <figcaption>Простой баннер для шапки сайта.</figcaption>
+          </figure>
+        </div>
+
+        <h2 id="divider">Разделитель</h2>
+        <p>Разделитель используется между блоками текста.</p>
+        <img class="divider" src="assets/divider.svg" alt="Разделитель">
+
+        <h2 id="icons">Иконки и буллеты</h2>
+        <p>Иконки используются в ссылках и в меню. Буллет применяется в списках.</p>
+        <div class="mini-gallery">
+          <figure>
+            <img src="assets/icon-home.svg" alt="Иконка домой">
+            <figcaption>Иконка для главной страницы.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/icon-back.svg" alt="Иконка назад">
+            <figcaption>Иконка для ссылки назад.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/icon-mail.svg" alt="Иконка почта">
+            <figcaption>Иконка для контактов.</figcaption>
+          </figure>
+        </div>
+
+        <ul class="resources">
+          <li>Баннер: <a href="assets/banner.svg">banner.svg</a></li>
+          <li>Разделитель: <a href="assets/divider.svg">divider.svg</a></li>
+          <li>Буллет: <a href="assets/bullet.svg">bullet.svg</a></li>
+        </ul>
+
+        <footer>
+          Страница с графическими файлами.
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

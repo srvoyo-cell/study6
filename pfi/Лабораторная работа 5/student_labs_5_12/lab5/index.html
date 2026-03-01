@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 5</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f7f7f7;
+      color: #222;
+    }
+    .card {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #d7d7d7;
+      border-radius: 8px;
+    }
+    fieldset {
+      margin-bottom: 16px;
+      border: 1px solid #cfcfcf;
+      border-radius: 6px;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+    button {
+      margin-right: 8px;
+      padding: 8px 14px;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background: #eef6ff;
+      border-radius: 6px;
+      min-height: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 5</h1>
+    <p>Простая анкета с переключателями.</p>
+
+    <form id="surveyForm">
+      <fieldset>
+        <legend>Пол</legend>
+        <label><input type="radio" name="gender" value="Мужской"> Мужской</label>
+        <label><input type="radio" name="gender" value="Женский"> Женский</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Возраст</legend>
+        <label><input type="radio" name="age" value="до 18 лет"> до 18 лет</label>
+        <label><input type="radio" name="age" value="18-25 лет"> 18-25 лет</label>
+        <label><input type="radio" name="age" value="26-40 лет"> 26-40 лет</label>
+        <label><input type="radio" name="age" value="старше 40 лет"> старше 40 лет</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Семейное положение</legend>
+        <label><input type="radio" name="status" value="Не женат / не замужем"> Не женат / не замужем</label>
+        <label><input type="radio" name="status" value="Женат / замужем"> Женат / замужем</label>
+      </fieldset>
+
+      <button type="button" onclick="showResult()">Показать результат</button>
+      <button type="reset" onclick="clearResult()">Очистить</button>
+    </form>
+
+    <div class="result" id="result">Заполните анкету и нажмите кнопку.</div>
+  </div>
+
+  <script>
+    function getCheckedValue(name) {
+      const checked = document.querySelector('input[name="' + name + '"]:checked');
+      return checked ? checked.value : 'не выбрано';
+    }
+
+    function showResult() {
+      const gender = getCheckedValue('gender');
+      const age = getCheckedValue('age');
+      const status = getCheckedValue('status');
+      const result = document.getElementById('result');
+
+      result.innerHTML =
+        'Пол: ' + gender + '<br>' +
+        'Возраст: ' + age + '<br>' +
+        'Семейное положение: ' + status;
+    }
+
+    function clearResult() {
+      document.getElementById('result').textContent = 'Данные очищены.';
+    }
+  </script>
+</body>
+</html>

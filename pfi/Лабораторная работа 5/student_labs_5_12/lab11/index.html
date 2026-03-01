@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 11</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f8f8f8;
+    }
+    .card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      margin: 12px 0;
+    }
+    input, button {
+      padding: 8px;
+      margin: 6px 6px 6px 0;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background: #f0f8f0;
+      border-radius: 6px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 11</h1>
+    <p>Обработка строк.</p>
+
+    <textarea id="textInput" placeholder="Введите текст"></textarea>
+
+    <div>
+      <button type="button" onclick="countWords()">Посчитать слова</button>
+      <button type="button" onclick="compressSpaces()">Сжать пробелы</button>
+    </div>
+
+    <div>
+      <input type="text" id="fromWord" placeholder="Слово А">
+      <input type="text" id="toWord" placeholder="Слово В">
+      <button type="button" onclick="replaceWords()">Заменить</button>
+    </div>
+
+    <div class="result" id="result">Результат появится здесь.</div>
+  </div>
+
+  <script>
+    function getText() {
+      return document.getElementById('textInput').value;
+    }
+
+    function countWords() {
+      const text = getText().trim();
+      const count = text ? text.split(/\s+/).length : 0;
+      document.getElementById('result').textContent = 'Количество слов: ' + count;
+    }
+
+    function compressSpaces() {
+      const text = getText();
+      const compressed = text.replace(/\s+/g, ' ').trim();
+      document.getElementById('textInput').value = compressed;
+      document.getElementById('result').textContent = 'Пробелы сжаты.';
+    }
+
+    function replaceWords() {
+      const text = getText();
+      const fromWord = document.getElementById('fromWord').value;
+      const toWord = document.getElementById('toWord').value;
+
+      if (!fromWord) {
+        alert('Введите слово для замены.');
+        return;
+      }
+
+      const pattern = new RegExp(fromWord, 'g');
+      const replaced = text.replace(pattern, toWord);
+      document.getElementById('textInput').value = replaced;
+      document.getElementById('result').textContent = 'Замена выполнена.';
+    }
+  </script>
+</body>
+</html>

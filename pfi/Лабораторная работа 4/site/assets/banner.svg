@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 140" role="img" aria-labelledby="title">
+  <title id="title">Простой баннер</title>
+  <rect width="900" height="140" fill="#dbe8f5"/>
+  <rect x="10" y="10" width="880" height="120" fill="#ffffff" stroke="#336699" stroke-width="2"/>
+  <text x="40" y="55" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#003366">Лабораторная работа № 4</text>
+  <text x="40" y="92" font-family="Arial, sans-serif" font-size="22" fill="#333333">Пример простого сайта по теме CSS</text>
+</svg>

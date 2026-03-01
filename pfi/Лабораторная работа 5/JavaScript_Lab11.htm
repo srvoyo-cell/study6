@@ -1,0 +1,137 @@
+﻿
+<!-- saved from url=(0047)http://los-serega.narod.ru/JavaScript/lr11.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./JavaScript_Lab11_files/saved_resource"></script></head><body background="./JavaScript_Lab11_files/fon.jpg"><title>Лабораторная работа №11</title>
+
+
+<p align="Center">
+ <b>Лабораторная работа №11</b>
+ <br>
+ <b>Работа со строками</b>
+</p>
+
+<p align="Justify">
+ <br>Строковые литералы или строковые переменные являются в языке JavaScript объектом типа <i>string</i>, к которому могут быть применены методы, определенные в языке. Создание нового объекта требует вызова функции-конструктора объекта. Для того чтобы создать строковый объект, надо применить конструктор <i>newstring</i>, например:
+ </p><pre>s=newString("результат=")</pre>
+<p align="Justify">
+ Объект <i>string</i> имеет единственное свойство <i>length</i> (длина_строки). Выражение <i>s.length</i> выдает значение 10, равное длине строки, содержащейся в строковом объекте <i>s</i>. Объект <i>string</i> имеет два типа методов. С методами, непосредственно влияющими на саму строку, мы сейчас и познакомимся, рассматривая примеры обработки текстовой информации.
+ <br>Одним из часто используемых методов является метод выделения из строки отдельного символа. Метод <i>charAt(ni)</i> возвращает символ, позицию которого определяет параметр <i>ni</i>. Символы в строке перенумерованы, начиная с 0.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Пример 1. Вывод символов строки в "столбик"</b>
+</p>
+
+<p align="Justify">
+ <br>Напишем сценарий, при выполнении которого заданный текст выводится в "столбик", т.е. на каждой строке размещается по одному символу.
+ <br>При решении задачи из заданной строки последовательно выбираются символы. Формируется новая строка, в которой за каждым символом ставится последовательность символов, обеспечивающая переход на новую строку. Когда строка результата сформирована, то она размещается в текстовом поле формы, тем самым для исходной строки осуществляется вывод в "столбик". Сценарий, осуществляющий обработку строки, приведен в листинге 1.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 1.</b> Вывод символов строки в "столбик"
+ <br>
+ <textarea rows="10" cols="70" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Вывод символов строки в "столбик"&lt;/TITLE&gt;
+  &lt;script language="JavaScript"&gt;
+  &lt;!-- //
+  function ttest(s)
+  { var sres="Прочитанный текст:"+" \r\n"+s+"\r\n"+
+  'Текст в "столбик":'+"\r\n"
+  var cur=""
+  for ( var i=0; i &lt;= s.length-1; i += 1)
+  {c=s.charAt(i); cur +=c+"\r\n" }
+  sres+=cur
+  return sres
+  }
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY bgcolor="#FFFFCC"&gt;
+  &lt;H4&gt;Символы текущей строки в столбик&lt;/H4&gt;
+  &lt;FORM name="form1"&gt;
+  Введите строку: &lt;input type="text" size=20 name="st1"&gt;&lt;hr&gt;
+  &lt;input type="button" value=Bыпoлнить onClick="form1.res.value=ttest(form1.st1.value)"&gt;
+  &lt;input type="reset" value=Очистить&gt;&lt;hr&gt;
+  &lt;textarea cols=20 rows=7 name= res&gt;&lt;/textarea&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/html&gt;
+ </textarea>
+</p>
+
+<p align="Justify">
+ <br>Метод <i>substr (n1,n2)</i> позволяет выделять из строки подстроку. Параметр <i>n1</i> задает позицию первого символа подстроки; параметр <i>n2</i> определяет количество символов в подстроке. Например, если строка <i>s="сборник"</i>, то в результате выполнения <i>substr (0,4)</i> будет выделена подстрока <i>"сбор"</i>.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Пример 2. Вычисление количества повторений строки в тексте</b>
+</p>
+
+<p align="Justify">
+ <br>Напишем программу, которая определяет, сколько раз заданное слово встречается в определенном тексте.
+ <br>В тексте слова разделяются пробелами. После того как очередное слово найдено, просмотр продолжается с символа, следующего за найденным словом.
+ <br>HTML-код документа представлен в листинге 2.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 2.</b> Количество заданных слов в тексте
+ <br>
+ <textarea rows="10" cols="70" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Количество заданных слов в тексте&lt;/TITLE&gt;
+  &lt;script language="JavaScript"&gt;
+  &lt;!-- //
+  function numword(obj)
+  { var h=obj.data.value
+  var s=obj.textin.value
+  s='  '+s+'  '
+  h='  '+h+'  '
+  var m=h.length
+  var res=0
+  var i=0
+  while (i &lt;= s.length-1)
+  { ch=s.substr(i,m)
+  if (ch==h) {res+=l; i = i+m-1}
+  else
+  i++
+  }
+  obj.result.value=res
+  }
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY bgcolor="#FFFFCC"&gt;
+  &lt;H4&gt;Количество заданных слов в тексте&lt;/H4&gt;
+  &lt;FORM name="form1"&gt;
+  Введите текст:&lt;br&gt;
+  &lt;textarea name="textin" rows=4 cols=20&gt;&lt;/textarea&gt;&lt;hr&gt;
+  Введите слово: &lt;input type="text" name="data" size="8"&gt;&lt;hr&gt;
+  &lt;input type="button" value="0пpeдeлить" onClick="numword(form1)"&gt;&lt;hr&gt;
+  Количество слов в тексте: &lt;input type="text" name="result" size=8&gt;&lt;hr&gt;
+  &lt;input type="reset" value="Отменить"&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/HTML&gt;
+ </textarea>
+ 
+ <br><br>
+ <b>Упражнения</b>
+</p>
+
+<p align="Justify">
+ 1. Проверить примеры из лабораторной работы.
+ <br>2. Слова в заданном тексте разделяются пробелами. Напишите программу, которая определяет количество слов в тексте.
+ <br>3. Напишите программу, в которой все слова <i>А</i> заменены словом <i>В</i>, где <i>А</i> и <i>В</i> - заданные слова, возможно, различной длины.
+ <br>4. Напишите программу, которая "сжимает" заданный текст, т. е. заменяет все подряд идущие пробелы на один.
+
+<br><br>
+</p><!-- copyright (t3) --><div align="center">Хостинг от <a href="http://www.ucoz.ru/" title="Создать сайт бесплатно">uCoz</a><br></div><!-- /copyright -->
+
+
+<script type="text/javascript" src="./JavaScript_Lab11_files/58021.js"></script></body></html>

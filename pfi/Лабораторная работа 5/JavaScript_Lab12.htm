@@ -1,0 +1,187 @@
+﻿
+<!-- saved from url=(0047)http://los-serega.narod.ru/JavaScript/lr12.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./JavaScript_Lab12_files/saved_resource"></script></head><body background="./JavaScript_Lab12_files/fon.jpg"><title>Лабораторная работа №12</title>
+
+
+
+<p align="Center">
+ <b>Лабораторная работа №12</b>
+ <br>
+ <b>Массивы</b>
+</p>
+
+<p align="Justify">
+ <br>Тип <i>Array</i> введен в JavaScript для возможности манипулирования самыми разными объектами, которые может отображать Navigator. Это - список всех гипертекстовых ссылок данной страницы, список всех картинок на данной странице, список всех элементов формы и т.п. Пользователь может создать и свой собственный массив, используя, конструктор <i>Array()</i>. Делается это следующим образом:
+ </p><pre>new_array = new Array()
+ new_array5 = new Array(5)
+ colors = new Array("red", "white", "blue")</pre>
+<p align="Justify">
+ Размерность массива может изменяться. Можно сначала определить массив, а потом присвоить одному из его элементов значение. Как только это произойдет, изменится и размерность массива:
+ </p><pre>colors = new Array()
+ colors[5] = "red".</pre>
+<p align="Justify">
+ В данном случае массив будет состоять из 6 элементов, так как первым элементом массива считается элемент с индексом 0.
+ <br>Для массивов определены четыре метода: <i>join, reverse, sort, concat</i>. <i>Join</i> объединяет элементы массива в строку символов, в качестве аргумента в этом методе задается разделитель:
+ </p><pre>colors = new Array("red", "white", "blue")
+ string = acolors.join(" + ")</pre>
+<p align="Justify">
+ В результате выполнения присваивания значения строке символов <i>string</i> мы получим следующую строку: <i>string = "red + white + blue"</i>. Другой метод, <i>reverse</i>, изменяет порядок элементов массива на обратный, метод <i>sort</i> отсортировывает их в лексикографическом порядке, а метод <i>concat</i> объединяет два массива.
+ <br>У массивов есть два свойства: <i>length</i> и <i>prototype</i>. <i>Length</i> определяет число элементов массива. Если нужно выполнить некоторую рутинную операцию над всеми элементами массива, то можно воспользоваться циклом типа:
+ </p><pre>color = new Array("red", "white", "blue")
+ n = 0 while(n != colors.length)
+ {... операторы тела цикла ...}</pre>
+<p align="Justify">
+ Свойство <i>prototype</i> позволяет добавить свойства к объектам массива. Однако чаще всего в программах на JavaScript используются встроенные массивы, в основном графические образы (<i>Images</i>) и гипертекстовые ссылки (<i>Links</i>).
+ <br>В новой версии языка появился конструктор для этого типа объектов:
+ </p><pre>new_image = new Image()
+ new_image = new Image(width, height)</pre>
+<p></p>
+
+<p align="Center">
+ <br>
+ <b>Пример 1. Создание мультипликации с использованием массивов.</b>
+</p>
+
+<p align="Justify">
+ <br>Часто для создания мультипликации формируют массив графических объектов, которые потом прокручивают один за другим:
+ </p><pre>img_array = new Array()
+ img_array[0] = new Image(50,100)
+ img_array[1] =new Image(50,100)
+  ...
+ img_array[99] = new Image(50,100)</pre>
+<p align="Justify">
+ У объекта <i>Image</i> существует 10 свойств, из которых, пожалуй, самым важным является <i>src</i>. Так, для присваивания конкретных картинок элементам массива <i>img_array</i> следует воспользоваться следующей последовательностью команд:
+ </p><pre>img_array[0].src = "image1.gif"
+ img_array[1].src = "image2.gif"
+ ...
+ img_array[99].src = "image100.gif"</pre>
+<p align="Justify">
+ В данном случае можно было воспользоваться и циклом для присвоения имен, так как они могут быть составлены из констант и значения индексной переменной.
+ <br>Расширяя пример с массивом <i>Image</i>, построим теперь документ, в котором будет встроена мультипликация, определенная нашим массивом:
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 1.</b> Мультипликация.
+ <br>
+ <textarea rows="10" cols="70" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;SCRIPT&gt;
+  &lt;!--//
+  function multi_pulti()
+  {
+  img_array = new Array()
+  for (var i=0; i&lt;4; i++)
+  img_array[i]  = new Image(50,100)
+  img_array[0].src = "e1.jpg"
+  img_array[1].src = "e2.jpg"
+  img_array[2].src = "e3.jpg"
+  img_array[3].src = "e4.jpg"
+  var t=new Date()
+  p=-1
+  }
+
+  function s()
+  {
+  p=p+1
+  document.images[0].src =img_array[p].src
+  setTimeout("s()",100)
+  if (p==3) p=-1
+  }
+  //--&gt;
+  &lt;/SCRIPT&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY onLoad="multi_pulti()"&gt;
+  &lt;img src="e1.jpg"&gt;
+  &lt;br&gt;
+  &lt;input type="Button" name="But" value="Посмотреть" onClick="s()"&gt;
+ 
+&lt;/body&gt;
+  &lt;/html&gt;
+
+ </textarea>
+</p>
+
+<p align="Justify">
+ Далее рассмотрим несколько классических задач, посвященных работе с массивами. Приведем функции работы с массивами, которые ценны сами по себе и могут применяться в различных программах.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Пример 2. Бинарный поиск с формированием таблицы результатов</b>
+</p>
+
+<p align="Justify">
+ Напишем функцию, которая реализует алгоритм бинарного поиска таким образом, чтобы во время работы программы формировалась таблица значений переменных <i>i, j, k</i> и некоторых выражений.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 2.</b> Поиск в упорядоченном массиве с таблицей промежуточных значений
+ <br>
+ <textarea rows="10" cols="70" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Бинарный поиск. Таблица промежуточных значений&lt;/TITLE&gt;
+  &lt;script language="JavaScript"&gt;
+  &lt;!-- //
+  var v=new Array (2, 3, 5, 6, 6, 7,10,11, 20, 25)
+  function testtab(obj,v,t)
+  { var res="i j k v[k] t&lt;= v[k]"+"\r\n"
+  var i=0
+  var j= v.length-1
+  var k
+  while ( i &lt; j )
+  { k=Math.round( (i+j)/2+0.5)-1
+  res = res + i + " "+j+" "+k+" "+"v[" + k + "]=" + v[k] + " " + t + "&lt;=" + v[k]+"\r\n"
+  if (t &lt;= v[k] )
+  j=k
+  else
+  i=k+l
+  }
+  res += "v[" + i + "]=" +v[i]+"\r\n"
+  obj.resultl.value=res
+  if (v[i] == t )
+  { return i}
+  else return -1
+  }
+  function test(obj)
+  { obj.datal.yalue=v}
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY bgcolor=silver&gt;
+  &lt;H4&gt;Реализация алгоритма бинарного поиска&lt;/H4&gt;
+  &lt;FORM name="forml"&gt;
+  &lt;pre&gt;
+  Массив:&lt;INPUT type="text" size=40 name="datal" &gt;&lt;hr&gt;
+  Элемент:&lt;INPUT type="text" size=20 name="data2" &gt;&lt;hr&gt;
+  Результат поиска: &lt;INPUT type="text" size=20 name="result" &gt;&lt;hr&gt;
+  Таблица промежуточных значений: &lt;BR&gt;
+  &lt;textarea cols=50 rows=7 name="result1" &gt; &lt;/textarea&gt;&lt;hr&gt;
+  &lt;/PRE&gt;
+  &lt;input type="button" value=0пpeдeлить onClick="test(form1); forml.result.value=testtab(form1,v,forml.data2.value)"&gt;
+  &lt;input type="reset" value=Отменить&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/HTML&gt;
+ </textarea>
+ 
+ <br><br>
+ <b>Задания</b>
+</p>
+
+<p align="Justify">
+ 1. Проверить пример 2 из лабораторной работы.
+ <br>2. Создать простейший мультипликационный сюжет с использованием массива.
+ <br>3. Задан одномерный массив вещественных чисел. Напишите сценарий, который определяет число положительных элементов массива.
+ <br>4. Задан одномерный массив вещественных чисел. Напишите сценарий, позволяющий найти максимальный элемент в массиве.
+
+ <br><br>
+</p>
+
+
+<!-- copyright (t3) --><div align="center">Хостинг от <a href="http://www.ucoz.ru/" title="Создать сайт бесплатно">uCoz</a><br></div><!-- /copyright -->
+
+
+<script type="text/javascript" src="./JavaScript_Lab12_files/745415.js"></script></body></html>

@@ -1,0 +1,9 @@
+[project]
+name = "snake"
+version = "0.1.0"
+description = "Simple Snake game"
+requires-python = ">=3.10"
+dependencies = ["pygame>=2.5"]
+
+[tool.uv]
+# uv uses PEP 621 dependencies

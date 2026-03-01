@@ -1,0 +1,178 @@
+﻿
+<!-- saved from url=(0046)http://los-serega.narod.ru/JavaScript/lr7.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./JavaScript_Lab7_files/saved_resource"></script></head><body background="./JavaScript_Lab7_files/fon.jpg"><title>Лабораторная работа №7</title>
+
+
+<p align="Center">
+ <b>Лабораторная работа №7</b>
+ <br>
+ <b>Списки</b>
+</p>
+
+<p align="Justify">
+ <br>Если элементов много, то представление их с помощью флажков или переключателей увеличивает размер формы. В этом случае варианты выбора могут быть представлены в окне браузера более компактно с помощью тега &lt;select&gt;. Тег имеет несколько параметров. Параметр <i>name</i> является обязательным. Для того чтобы установить число одновременно видимых элементов, следует задать параметр <i>size=n</i>. Когда <i>n</i> равно 1, то отображается ниспадающее меню или список выбора; при <i>n</i>&gt;1 выводится список с <i>n</i> одновременно видимыми значениями. Если параметр <i>size</i> не задан, то по умолчанию принимается значение равное 1. Указание параметра <i>multiple</i> означает, что из меню или списка можно выбрать несколько элементов. Элементы меню задаются внутри тега &lt;select&gt; с помощью тега &lt;option&gt;. Общий вид тега таков:
+ </p><pre>&lt;option selected value=строка&gt;</pre>
+<p align="Justify">
+ Параметр <i>selected</i> означает, что данный элемент списка считается выбранным по умолчанию. Параметр <i>value</i> содержит значение, которое передается, если данный элемент выбран из списка или меню.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Пример 1. Обработка анкеты переводчика</b>
+</p>
+
+<p align="Justify">
+ <br>Напишем сценарий обработки анкеты переводчика. Сведения о тех языках, которыми владеет переводчик, требуется задать с помощью списка, Выбранные языки следует помещать в поле ввода многострочного текста.
+ <br>Напомним, что событие <i>change</i> происходит в тот момент, когда значение элемента формы <i>text, select</i> или <i>textarea</i> изменилось, и элемент потерял фокус. Будем обрабатывать анкету переводчика следующим образом. Параметр обработки события поместим в тег &lt;select&gt;. Как только выбран конкретный язык, т. е. произошло событие <i>change</i>, выполняется функция <i>gr</i>:
+ </p><pre>function gr(obj,m)
+ { var r=100*(Number(((obj.elements[0])[m]).value)+1)
+ s+=((obj.elements[0]) [m] ).text+"\r\n"
+ obj.restext.value=s
+ sum+=r
+ obj.res.value=r}
+ </pre>
+
+<p align="Justify">
+ Первый параметр - имя формы, второй - значение параметра <i>value</i> выбранного элемента. Второй оператор обеспечивает формирование строки всех выбранных пользователем языков. Третий оператор помещает вычисленное значение в текстовое поле. В результате выполнения четвертого оператора присваивания в переменной <i>sum</i> формируется значение, которое, затем при нажатии кнопки <b>Сумма</b> будет выведено в текстовое поле. Последний оператор помещает значение для выбранного языка в соответствующее поле формы. Полностью документ со сценарием и формами может быть описан так, как указано в листинге 1.
+</p>
+
+<p align="Center">
+ <b>Листинг 1. Реакция на событие change в теге &lt;select&gt;</b>
+ <br>
+ <textarea rows="10" cols="60" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Реакция на событие Change в теге select&lt;/TITLE&gt;
+  &lt;script language="JavaScript"&gt;
+  &lt;!-- //
+  var s=""
+  var sum=0
+  function gr(obj,m)
+  { var r=100*(Number(((obj.elements[0])[m]).value)+1)
+  s+=((obj.elements[0])[m]).text+"\r\n"
+  obj.restext.value=s
+  sum+=r
+  obj.res.value=r
+  }
+  //--&gt;
+  &lt;/script&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+  &lt;FORM name="form1"&gt;
+  &lt;H3&gt;Анкета переводчика&lt;/H3&gt;
+  &lt;TABLE border=3 bgcolor=silver&gt;
+  &lt;TR&gt;&lt;TH&gt;Выбранный язык&lt;/TH&gt;&lt;TH&gt;Результат&lt;/TH&gt;&lt;/TR&gt;
+  &lt;TR&gt;
+  &lt;TD valign=top&gt;
+  &lt;select name="data" size=3 onChange="gr(form1,form1.data.value)"&gt;
+  &lt;option value=0&gt;русский
+  &lt;option value=1&gt;английский
+  &lt;option value=2&gt;французский
+  &lt;/select&gt;&lt;P&gt;
+  &lt;input type="text" name="res" size=15&gt;
+  &lt;/TD&gt;
+  &lt;TD&gt;&lt;TEXTAREA name="restext" cols=15 rows=6&gt;
+  &lt;/TEXTAREA&gt;&lt;P&gt;
+  &lt;input type="button" value=Сумма onClick="form1.resgr.value=sum"&gt;
+  &lt;input type="text" name="resgr" size=10&gt;
+  &lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&lt;p&gt;
+  &lt;input type="reset" value="Отменить" onClick="sum=0; s=''"&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/html&gt;
+ </textarea>
+ <br><br>
+ <br>
+ <b>Пример 2. Тест "Города и памятники"</b>
+</p>
+
+<p align="Justify">
+ <br>Напишем сценарий обработки теста "Города и памятники". Названия городов и памятников задаются с помощью списков. Пользователь выбирает в левом перечне название города, а в правом - памятник, расположенный в этом городе. После нажатия кнопки <b>Результат</b> в текстовое поле выводится количество правильных ответов.
+ <br>В сценарии используются три глобальные переменные. Переменная <i>q</i> хранит последнее выбранное значение в левом столбце; переменная <i>а</i> - выбранное значение правого столбца; значение переменной <i>sum</i> содержит число правильных ответов. В двух списках для правильной пары "вопрос/ответ" совпадают соответствующие значения параметра <i>value</i>. Эти значения проверяются после выбора элемента списка правого столбца. Результат тестирования можно посмотреть, если нажать кнопку <b>Результат</b>.
+ <br>Сценарий, реализующий простую обработку теста, представлен в листинге 2.
+</p>
+
+<p align="Center">
+ <br>
+ <b>Листинг 2.</b> Простая тестирующая программа
+ <br>
+ <textarea rows="10" cols="60" onfocus="select()">  &lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;Города и памятники.&lt;/TITLE&gt;
+  &lt;script&gt;
+  &lt;!--
+  var sum=0
+  var q
+  var a
+  function eq()
+  { q=test.question.value
+  a=test.answer.value;
+  if (a==q) sum +=1
+  }
+  function result()
+  { document.test.res.value=sum}
+  //--&gt;
+  &lt;/script&gt;
+  &lt;BODY background="fon3.gif"&gt;
+  &lt;h3 align=center&gt;Города и памятники&lt;/hЗ&gt;
+  &lt;FORM name="test"&gt;
+  &lt;TABLE border=3 align=center cellpadding=5
+  cellspacing=6 bgcolor= silver&gt;
+  &lt;TR&gt;&lt;TH&gt;Памятник&lt;/TH&gt;&lt;TH&gt;Находится в городе&lt;/ТН&gt;
+  &lt;TR&gt;&lt;TD&gt;
+  &lt;select size =7 name="question"
+  onChange="q=test.question.value"&gt;
+  &lt;option value="mad"&gt;Музей Прадо&lt;br&gt;
+  &lt;option value="ber" &gt;Рейхстаг&lt;br&gt;
+  &lt;option value="mil"&gt;Оперный театр Ла Скала&lt;br&gt;
+  &lt;option value="ier"&gt;Стена Плача&lt;br&gt;
+  &lt;option value="mek"&gt;Священный камень Кааб&lt;br&gt;
+  &lt;option value="spb"&gt;Медный Всадник&lt;br&gt;
+  &lt;option value="mos"&gt;Третьяковская галерея&lt;br&gt;
+  &lt;option value="par"&gt;Триумфальная Арка&lt;br&gt;
+  &lt;option value="new"&gt;Статуя Свободы&lt;br&gt;
+  &lt;option value="lon"&gt;Tayэp&lt;br&gt;
+  &lt;/select&gt;
+  &lt;/TD&gt;
+  &lt;TD&gt;
+  &lt;select size=7 name="answer" onChange="eq()"&gt;
+  &lt;option value="spb"&gt;Caнкт-петербург&lt;br&gt;
+  &lt;option value="mos"&gt;Mocква&lt;br&gt;
+  &lt;option value="mek"&gt;Meккa&lt;br&gt;
+  &lt;option value="ier"&gt;Иepycaлим&lt;br&gt;
+  &lt;option value="mil"&gt;Милан&lt;br&gt;
+  &lt;option value="par"&gt;Пapиж&lt;br&gt;
+  &lt;option value="mad"&gt;Мадрид&lt;br&gt;
+  &lt;option value="lon"&gt;Лoндoн&lt;br&gt;
+  &lt;option value="new"&gt;Нью-Йорк&lt;br&gt;
+  &lt;option value="ber"&gt;Бepлин&lt;br&gt;
+  &lt;/select&gt;
+  &lt;/TD&gt;&lt;/TR&gt;
+  &lt;/TABLE&gt;
+  &lt;CENTER&gt;&lt;P&gt;
+  &lt;input type="button" value="Результат" onclick="result()"&gt;&lt;br&gt;
+  Количество правильных ответов
+  &lt;input type="text" name="res" size="5"&gt;&lt;P&gt;
+  &lt;input type="reset" value= "Обновить" onclick="sum=0"&gt;
+  &lt;/FORM&gt;
+ 
+&lt;/body&gt;
+  &lt;/HTML&gt;
+ </textarea>
+
+ <br><br><b>Задания</b>
+</p>
+
+<p align="Justify">
+1. Проверить примеры из лабораторной работы.
+<br>2. Напишите сценарий, который позволяет выбрать для таблицы и составляющих ее ячеек либо цвет фона, либо фоновое изображение, либо и то и другое. Предусмотрите возможность задания своего цвета фона для каждой ячейки.
+<br>3. Напишите сценарий, который позволяет посчитать стоимость предполагаемой покупки. Задается список продуктов, цена за единицу товара и количество экземпляров.
+
+ <br><br>
+</p>
+
+
+<!-- copyright (t3) --><div align="center">Хостинг от <a href="http://www.ucoz.ru/" title="Создать сайт бесплатно">uCoz</a><br></div><!-- /copyright -->
+
+
+<script type="text/javascript" src="./JavaScript_Lab7_files/845083.js"></script></body></html>

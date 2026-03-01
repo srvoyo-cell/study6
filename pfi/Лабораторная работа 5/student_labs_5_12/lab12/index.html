@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 12</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f2f7f5;
+    }
+    .card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d3e2dc;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    #scene {
+      position: relative;
+      width: 260px;
+      height: 180px;
+      margin: 16px 0;
+      border: 2px solid #8fb7a8;
+      background: #f8fffc;
+    }
+    #ball {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #2f8f6b;
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+    }
+    input, button {
+      padding: 8px;
+      margin: 6px 6px 6px 0;
+    }
+    .result {
+      margin-top: 12px;
+      padding: 12px;
+      background: #eefaf4;
+      border-radius: 6px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 12</h1>
+    <p>Массивы и простая анимация.</p>
+
+    <h2>Мультипликация</h2>
+    <div id="scene">
+      <div id="ball"></div>
+    </div>
+    <button type="button" onclick="startAnimation()">Старт</button>
+    <button type="button" onclick="stopAnimation()">Стоп</button>
+
+    <h2>Анализ массива</h2>
+    <input type="text" id="arrayInput" placeholder="Например: 1, -2, 3.5, 0, 8">
+    <button type="button" onclick="analyzeArray()">Обработать массив</button>
+
+    <div class="result" id="result">Введите массив чисел через запятую.</div>
+  </div>
+
+  <script>
+    const positions = [
+      { left: 0, top: 0 },
+      { left: 70, top: 0 },
+      { left: 140, top: 0 },
+      { left: 210, top: 0 },
+      { left: 210, top: 70 },
+      { left: 210, top: 140 },
+      { left: 140, top: 140 },
+      { left: 70, top: 140 },
+      { left: 0, top: 140 },
+      { left: 0, top: 70 }
+    ];
+    let currentStep = 0;
+    let timer = null;
+
+    function moveBall() {
+      const ball = document.getElementById('ball');
+      const point = positions[currentStep];
+      ball.style.left = point.left + 'px';
+      ball.style.top = point.top + 'px';
+      currentStep = (currentStep + 1) % positions.length;
+    }
+
+    function startAnimation() {
+      if (timer !== null) {
+        return;
+      }
+
+      moveBall();
+      timer = setInterval(moveBall, 300);
+    }
+
+    function stopAnimation() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function analyzeArray() {
+      const raw = document.getElementById('arrayInput').value;
+
+      if (!raw.trim()) {
+        alert('Введите массив.');
+        return;
+      }
+
+      const numbers = raw.split(',').map(function (item) {
+        return Number(item.trim());
+      }).filter(function (item) {
+        return !Number.isNaN(item);
+      });
+
+      if (numbers.length === 0) {
+        alert('Не удалось распознать числа.');
+        return;
+      }
+
+      let positiveCount = 0;
+      let max = numbers[0];
+
+      numbers.forEach(function (item) {
+        if (item > 0) {
+          positiveCount += 1;
+        }
+        if (item > max) {
+          max = item;
+        }
+      });
+
+      document.getElementById('result').textContent =
+        'Положительных элементов: ' + positiveCount + '\n' +
+        'Максимальный элемент: ' + max;
+    }
+  </script>
+</body>
+</html>

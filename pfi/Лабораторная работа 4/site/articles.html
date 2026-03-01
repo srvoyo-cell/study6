@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Теория</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="page-banner">
+      <img src="assets/banner.svg" alt="Баннер сайта">
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="nav-title">Меню сайта</p>
+        <nav aria-label="Меню">
+          <ul class="nav-tree">
+            <li class="menu-level-1">
+              <a href="index.html"><img class="nav-icon" src="assets/icon-home.svg" alt="">Главная</a>
+            </li>
+            <li class="menu-level-1">
+              <a href="articles.html">Теория</a>
+              <ul>
+                <li class="menu-level-2">
+                  <a href="#css-basics">Основы CSS</a>
+                  <ul>
+                    <li class="menu-level-3">
+                      <a href="#selectors">Селекторы</a>
+                      <ul>
+                        <li class="menu-level-4"><a href="#pseudo">Псевдоклассы</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-level-2"><a href="#layout">Оформление страницы</a></li>
+              </ul>
+            </li>
+            <li class="menu-level-1"><a href="gallery.html">Графика</a></li>
+            <li class="menu-level-1"><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <ul class="meta-list">
+          <li>На этой странице показаны h2, h3 и h4.</li>
+          <li>Есть якорные ссылки для меню.</li>
+        </ul>
+      </aside>
+
+      <main class="content-card">
+        <p class="eyebrow">Теоретическая часть</p>
+        <h1>Коротко про CSS</h1>
+        <p class="lead">Здесь собрана простая информация по теме CSS. Эта страница нужна не только для текста, но и для показа разных заголовков.</p>
+
+        <div class="button-row">
+          <a class="icon-link" href="index.html"><img src="assets/icon-back.svg" alt="">На главную</a>
+          <a class="icon-link" href="gallery.html">К графике</a>
+        </div>
+
+        <img class="divider" src="assets/divider.svg" alt="Разделитель">
+
+        <h2 id="css-basics">Основы CSS</h2>
+        <p>CSS нужен для оформления сайта. С его помощью можно менять цвет, размер шрифта, отступы, фон и расположение элементов.</p>
+
+        <h3 id="selectors">Селекторы</h3>
+        <p>Селектор показывает, к какому элементу применяется стиль. Например, можно задать стиль для тега, класса или ссылки.</p>
+
+        <h4 id="pseudo">Псевдоклассы</h4>
+        <p>Псевдоклассы используются для состояний элемента. Например, при наведении мыши ссылка может менять цвет.</p>
+
+        <h3 id="layout">Оформление страницы</h3>
+        <p>Чтобы страница выглядела аккуратно, обычно задают общий фон, ширину блока, отступы и рамки. В этой работе используется самый простой вариант оформления.</p>
+
+        <ul class="resources">
+          <li>CSS подключается в теге <strong>link</strong>.</li>
+          <li>Все страницы используют один и тот же файл стилей.</li>
+          <li>За счет этого оформление везде одинаковое.</li>
+        </ul>
+
+        <footer>
+          Страница с теорией по теме CSS.
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

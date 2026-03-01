@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 5.2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f6f8fb;
+    }
+    .card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d8dee8;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 26px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #edf0f4;
+    }
+    input {
+      padding: 8px;
+      margin: 6px 6px 6px 0;
+    }
+    .hint {
+      color: #4f657a;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 5.2</h1>
+    <p>Функции и обработка событий `focus`, `select`, `blur`.</p>
+
+    <section>
+      <h2>Площадь треугольника по координатам</h2>
+      <input type="number" id="x1" step="any" placeholder="x1">
+      <input type="number" id="y1" step="any" placeholder="y1">
+      <input type="number" id="x2" step="any" placeholder="x2">
+      <input type="number" id="y2" step="any" placeholder="y2">
+      <input type="number" id="x3" step="any" placeholder="x3">
+      <input type="number" id="y3" step="any" placeholder="y3">
+      <br>
+      <input type="text" id="triangleArea" placeholder="Наведите фокус сюда" onfocus="calcTriangleArea()">
+      <div class="hint">Результат считается при получении фокуса полем результата.</div>
+    </section>
+
+    <section>
+      <h2>Расстояние до начала координат</h2>
+      <input type="number" id="pointX" step="any" placeholder="x">
+      <input type="number" id="pointY" step="any" placeholder="y">
+      <br>
+      <input type="text" id="distanceField" value="Выделите этот текст" onselect="calcDistance()">
+      <input type="text" id="distanceResult" placeholder="Результат">
+      <div class="hint">Выделите текст в левом поле, чтобы сработало событие `select`.</div>
+    </section>
+
+    <section>
+      <h2>Обмен значений</h2>
+      <input type="text" id="firstValue" placeholder="Первое значение">
+      <input type="text" id="secondValue" placeholder="Второе значение" onblur="swapValues()">
+      <div class="hint">После выхода из второго поля значения поменяются местами.</div>
+    </section>
+  </div>
+
+  <script>
+    function calcTriangleArea() {
+      const x1 = Number(document.getElementById('x1').value);
+      const y1 = Number(document.getElementById('y1').value);
+      const x2 = Number(document.getElementById('x2').value);
+      const y2 = Number(document.getElementById('y2').value);
+      const x3 = Number(document.getElementById('x3').value);
+      const y3 = Number(document.getElementById('y3').value);
+
+      const area = Math.abs(
+        (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
+      );
+
+      document.getElementById('triangleArea').value = area.toFixed(2);
+    }
+
+    function calcDistance() {
+      const x = Number(document.getElementById('pointX').value);
+      const y = Number(document.getElementById('pointY').value);
+      const distance = Math.sqrt(x * x + y * y);
+      document.getElementById('distanceResult').value = distance.toFixed(2);
+    }
+
+    function swapValues() {
+      const first = document.getElementById('firstValue');
+      const second = document.getElementById('secondValue');
+      const temp = first.value;
+      first.value = second.value;
+      second.value = temp;
+    }
+  </script>
+</body>
+</html>

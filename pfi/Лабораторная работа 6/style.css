@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    background: #ffa500;
+    color: #111;
+}
+
+.page {
+    width: min(820px, calc(100% - 20px));
+    margin: 24px auto;
+}
+
+.card {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #999;
+}
+
+.hero,
+.form-card {
+    background: #120a8f;
+    color: #fff;
+}
+
+.eyebrow,
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+.eyebrow {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+h1 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.lead {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.grid {
+    display: block;
+}
+
+.form-card h2,
+.table-card h2 {
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 10px;
+    border: 1px solid green;
+    font: inherit;
+    color: #111;
+    background: #fff;
+}
+
+button {
+    padding: 10px 14px;
+    border: 1px solid green;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: #0d7a2b;
+    cursor: pointer;
+}
+
+.status {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border: 1px solid #999;
+    font-weight: 700;
+}
+
+.success {
+    background: #d9f7d9;
+    color: #0d5a0d;
+}
+
+.error {
+    background: #ffd8d8;
+    color: #8b1f1f;
+}
+
+.table-card {
+    background: #fff;
+}
+
+.table-header {
+    margin-bottom: 12px;
+}
+
+.table-header p {
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #999;
+}
+
+@media (max-width: 760px) {
+    .page {
+        width: calc(100% - 20px);
+        margin: 16px auto;
+    }
+
+    .table-card {
+        overflow-x: auto;
+    }
+}

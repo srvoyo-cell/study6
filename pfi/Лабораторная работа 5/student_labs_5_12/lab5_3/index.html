@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 5.3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f7f6fb;
+    }
+    .card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ddd9ef;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eeebf8;
+    }
+    input, button {
+      padding: 8px;
+      margin: 6px 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 5.3</h1>
+    <p>Ветвления в программах.</p>
+
+    <section>
+      <h2>Количество максимальных элементов</h2>
+      <input type="number" id="n1" step="any" placeholder="1">
+      <input type="number" id="n2" step="any" placeholder="2">
+      <input type="number" id="n3" step="any" placeholder="3">
+      <input type="number" id="n4" step="any" placeholder="4">
+      <input type="number" id="n5" step="any" placeholder="5">
+      <button type="button" onclick="countMaxValues()">Определить</button>
+      <p id="maxCountResult">Введите 5 чисел.</p>
+    </section>
+
+    <section>
+      <h2>Можно ли построить треугольник</h2>
+      <input type="number" id="sideA" step="any" placeholder="a">
+      <input type="number" id="sideB" step="any" placeholder="b">
+      <input type="number" id="sideC" step="any" placeholder="c">
+      <button type="button" onclick="checkTriangle()">Проверить</button>
+      <p id="triangleCheckResult">Введите стороны треугольника.</p>
+    </section>
+
+    <section>
+      <h2>Определение четверти</h2>
+      <input type="number" id="coordX" step="any" placeholder="x">
+      <input type="number" id="coordY" step="any" placeholder="y">
+      <button type="button" onclick="findQuadrant()">Определить</button>
+      <p id="quadrantResult">Введите координаты точки.</p>
+    </section>
+  </div>
+
+  <script>
+    function countMaxValues() {
+      const values = [
+        Number(document.getElementById('n1').value),
+        Number(document.getElementById('n2').value),
+        Number(document.getElementById('n3').value),
+        Number(document.getElementById('n4').value),
+        Number(document.getElementById('n5').value)
+      ];
+
+      const max = Math.max.apply(null, values);
+      let count = 0;
+
+      values.forEach(function (value) {
+        if (value === max) {
+          count += 1;
+        }
+      });
+
+      document.getElementById('maxCountResult').textContent =
+        'Максимальное число: ' + max + '. Количество таких элементов: ' + count + '.';
+    }
+
+    function checkTriangle() {
+      const a = Number(document.getElementById('sideA').value);
+      const b = Number(document.getElementById('sideB').value);
+      const c = Number(document.getElementById('sideC').value);
+      const ok = a + b > c && a + c > b && b + c > a;
+
+      document.getElementById('triangleCheckResult').textContent =
+        ok ? 'Треугольник можно построить.' : 'Треугольник построить нельзя.';
+    }
+
+    function findQuadrant() {
+      const x = Number(document.getElementById('coordX').value);
+      const y = Number(document.getElementById('coordY').value);
+      let result = '';
+
+      if (x === 0 || y === 0) {
+        result = 'Точка лежит на оси координат.';
+      } else if (x > 0 && y > 0) {
+        result = 'Точка находится в I четверти.';
+      } else if (x < 0 && y > 0) {
+        result = 'Точка находится во II четверти.';
+      } else if (x < 0 && y < 0) {
+        result = 'Точка находится в III четверти.';
+      } else {
+        result = 'Точка находится в IV четверти.';
+      }
+
+      document.getElementById('quadrantResult').textContent = result;
+    }
+  </script>
+</body>
+</html>

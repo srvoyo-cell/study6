@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 5.1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f7f7f7;
+    }
+    .card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+    input, button {
+      padding: 8px;
+      margin: 6px 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 5.1</h1>
+    <p>Простые вычисления по формулам.</p>
+
+    <section>
+      <h2>Площадь круга</h2>
+      <input type="number" id="radius" step="any" placeholder="Радиус">
+      <button type="button" onclick="calcCircle()">Вычислить</button>
+      <p id="circleResult">Введите радиус.</p>
+    </section>
+
+    <section>
+      <h2>Гипотенуза</h2>
+      <input type="number" id="catetA" step="any" placeholder="Катет a">
+      <input type="number" id="catetB" step="any" placeholder="Катет b">
+      <button type="button" onclick="calcHypotenuse()">Вычислить</button>
+      <p id="hypotenuseResult">Введите два катета.</p>
+    </section>
+  </div>
+
+  <script>
+    function calcCircle() {
+      const radius = Number(document.getElementById('radius').value);
+
+      if (radius <= 0) {
+        alert('Введите положительный радиус.');
+        return;
+      }
+
+      const area = Math.PI * radius * radius;
+      document.getElementById('circleResult').textContent =
+        'Площадь круга: ' + area.toFixed(2);
+    }
+
+    function calcHypotenuse() {
+      const a = Number(document.getElementById('catetA').value);
+      const b = Number(document.getElementById('catetB').value);
+
+      if (a <= 0 || b <= 0) {
+        alert('Введите два положительных катета.');
+        return;
+      }
+
+      const c = Math.sqrt(a * a + b * b);
+      document.getElementById('hypotenuseResult').textContent =
+        'Гипотенуза: ' + c.toFixed(2);
+    }
+  </script>
+</body>
+</html>

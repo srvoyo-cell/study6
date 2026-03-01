@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная работа 6</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f4f6f8;
+    }
+    .card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    button {
+      margin-top: 12px;
+      padding: 8px 14px;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background: #eef9ef;
+      border-radius: 6px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Лабораторная работа 6</h1>
+    <p>Анкета слушателя курсов с использованием флажков.</p>
+
+    <form id="courseForm">
+      <label><input type="checkbox" name="option" value="5000" data-title="Курс JavaScript"> Курс JavaScript (5000 руб.)</label>
+      <label><input type="checkbox" name="option" value="2000" data-title="Продолжительность 2 месяца"> Продолжительность 2 месяца (2000 руб.)</label>
+      <label><input type="checkbox" name="option" value="1500" data-title="Занятия на английском"> Занятия на английском (1500 руб.)</label>
+      <label><input type="checkbox" name="option" value="1000" data-title="Итоговый проект"> Итоговый проект (1000 руб.)</label>
+
+      <button type="button" onclick="calculateTotal()">Рассчитать стоимость</button>
+      <button type="reset" onclick="resetResult()">Сбросить</button>
+    </form>
+
+    <div class="result" id="result">Выберите параметры обучения.</div>
+  </div>
+
+  <script>
+    function calculateTotal() {
+      const checkboxes = document.querySelectorAll('input[name="option"]');
+      const selected = [];
+      let total = 0;
+
+      checkboxes.forEach(function (item) {
+        if (item.checked) {
+          selected.push(item.dataset.title);
+          total += Number(item.value);
+        }
+      });
+
+      const result = document.getElementById('result');
+
+      if (selected.length === 0) {
+        result.textContent = 'Ничего не выбрано.';
+        return;
+      }
+
+      result.textContent =
+        'Вы выбрали:\n' +
+        selected.join('\n') +
+        '\n\nИтоговая стоимость: ' + total + ' руб.';
+    }
+
+    function resetResult() {
+      document.getElementById('result').textContent = 'Форма очищена.';
+    }
+  </script>
+</body>
+</html>
